@@ -1,27 +1,65 @@
-/*
-This is your site JavaScript code - you can add interactivity and carry out processing
-- Initially the JS writes a message to the console, and moves a button you can add from the README
-*/
+const buttonOne = document.querySelector("#btn");
+buttonOne.addEventListener("click", calculateAmount);
 
-// Print a message in the browser's dev tools console each time the page loads
-// Use your menus or right-click / control-click and choose "Inspect" > "Console"
-console.log("Hello 🌎");
+const buttonTwo = document.querySelector("#members");
+buttonTwo.addEventListener("click", addMembers);
 
-/* 
-Make the "Click me!" button move when the visitor clicks it:
-- First add the button to the page by following the "Next steps" in the README
-*/
-const btn = document.querySelector("button"); // Get the button from the page
-// Detect clicks on the button
-if (btn) {
-  btn.onclick = function() {
-    // The JS works in conjunction with the 'dipped' code in style.css
-    btn.classList.toggle("dipped");
-  };
+const people = document.querySelector(".people");
+
+function addMembers(e) {
+    e.preventDefault();
+    people.style.display = "block";
 }
 
-// This is a single line JS comment
-/*
-This is a comment that can span multiple lines 
-- use comments to make your own notes!
-*/
+function calculateAmount(e) {
+    e.preventDefault();
+    const holidays = document.querySelector(".holidays").value;
+    const stydying = document.querySelector(".stydying").value;
+    const sport = document.querySelector(".sport").value;
+    const beaty = document.querySelector(".beaty").value;
+    const clothes = document.querySelector(".clothes").value;
+    const health = document.querySelector(".health").value;
+    const family = document.querySelector(".family").value;
+    const food = document.querySelector(".food").value;
+
+    if (holidays === "" || stydying === "" || sport === "" || beaty === "" || clothes === "" || health === "" || family === "" || food === "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ошибка',
+            text: 'Заполни, пожалуйста, графу!',
+          });
+
+          return false;
+    }
+
+    if (holidays < 1 || stydying < 1 || sport < 1 || beaty < 1 || clothes < 1 || health < 1 || family < 1 || food < 1) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ошибка',
+            text: 'Заполни, пожалуйста, графу!',
+          });
+
+          return false;
+    }
+
+    if (isNaN(holidays) || isNaN(stydying) || isNaN(sport) || isNaN(beaty) || isNaN(clothes) || isNaN(health) || isNaN(family) || isNaN(food)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ошибка',
+            text: 'Нужно ввести число!',
+          });
+
+          return false;
+}
+
+    let totalSum = holidays + stydying + sport + beaty + clothes + health + family + food;
+    let lengthCategory = document.querySelectorAll("#category");
+    let length = lengthCategory.length;
+    let totalCategory = totalPay / length;
+    let monthPerson = totalSum * people;
+
+
+    document.querySelector("#monthFamily").textContent = totalSum;
+    document.querySelector("#monthCategory").textContent = totalCategory;
+    document.querySelector("#monthPerson").textContent = monthPerson;
+}
