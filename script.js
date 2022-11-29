@@ -22,7 +22,7 @@ function calculateAmount(e) {
     const family = document.querySelector(".family").value;
     const food = document.querySelector(".food").value;
 
-    if (holidays === "" || stydying === "" || sport === "" || beaty === "" || clothes === "" || health === "" || family === "" || food === "") {
+    if (holidays === "" || stydying === "" || sport === "" || beaty === "" || clothes === "" || health === "" || family === "" || food === "" || holidays < 1 || stydying < 1 || sport < 1 || beaty < 1 || clothes < 1 || health < 1 || family < 1 || food < 1) {
         Swal.fire({
             icon: 'error',
             title: 'Ошибка',
@@ -32,25 +32,25 @@ function calculateAmount(e) {
           return false;
     }
 
-    if (holidays < 1 || stydying < 1 || sport < 1 || beaty < 1 || clothes < 1 || health < 1 || family < 1 || food < 1) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Ошибка',
-            text: 'Заполни, пожалуйста, графу!',
-          });
+    // if (holidays < 1 || stydying < 1 || sport < 1 || beaty < 1 || clothes < 1 || health < 1 || family < 1 || food < 1) {
+    //     Swal.fire({
+    //         icon: 'error',
+    //         title: 'Ошибка',
+    //         text: 'Заполни, пожалуйста, графу!',
+    //       });
 
-          return false;
-    }
+    //       return false;
+    // }
 
-    if (isNaN(holidays) || isNaN(stydying) || isNaN(sport) || isNaN(beaty) || isNaN(clothes) || isNaN(health) || isNaN(family) || isNaN(food)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Ошибка',
-            text: 'Нужно ввести число!',
-          });
+//     if (isNaN(holidays) || isNaN(stydying) || isNaN(sport) || isNaN(beaty) || isNaN(clothes) || isNaN(health) || isNaN(family) || isNaN(food)) {
+//         Swal.fire({
+//             icon: 'error',
+//             title: 'Ошибка',
+//             text: 'Нужно ввести число!',
+//           });
 
-          return false;
-}
+//           return false;
+// }
 
     let totalSum = holidays + stydying + sport + beaty + clothes + health + family + food;
     let lengthCategory = document.querySelectorAll("#category");
@@ -58,8 +58,12 @@ function calculateAmount(e) {
     let totalCategory = totalPay / length;
     let monthPerson = totalSum * people;
 
+    totalSum = totalSum.toFixed(2);
+    totalCategory = totalCategory.toFixed(2);
+    monthPerson = monthPerson.toFixed(2);
+
 
     document.querySelector("#monthFamily").textContent = totalSum;
     document.querySelector("#monthCategory").textContent = totalCategory;
     document.querySelector("#monthPerson").textContent = monthPerson;
-}
+};
