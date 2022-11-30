@@ -1,15 +1,13 @@
 const buttonOne = document.querySelector("#btn");
 buttonOne.addEventListener("click", calculateAmount);
-
 const buttonTwo = document.querySelector("#members");
 buttonTwo.addEventListener("click", addMembers);
-
-const people = document.querySelector(".people");
 
 function addMembers(e) {
     e.preventDefault();
     people.style.display = "block";
-}
+};
+ 
 
 function calculateAmount(e) {
     e.preventDefault();
@@ -21,7 +19,9 @@ function calculateAmount(e) {
     const health = +document.querySelector(".health").value;
     const family = +document.querySelector(".family").value;
     const food = +document.querySelector(".food").value;
+    const people = +document.querySelector(".people").value;
 
+    
     if (holidays === "" || stydying === "" || sport === "" || beauty === "" || clothes === "" || health === "" || family === "" || food === "") {
         Swal.fire({
             icon: 'error',
